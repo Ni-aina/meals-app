@@ -14,8 +14,8 @@ const CategoryGridTile = ({ title, color, onPress }: CategoryGridTileInterface) 
                 style={({ pressed })=> [styles.button, pressed ? styles.buttonPressed : null]}
                 onPress={onPress}
             >
-                <View style={[styles.innerGrid, { backgroundColor: "#222" }]}>
-                    <Text style={{ fontSize: 18, color: color }}>
+                <View style={[styles.innerGrid, { backgroundColor: color }]}>
+                    <Text style={{ fontSize: 18 }}>
                         {title}
                     </Text>
                 </View>

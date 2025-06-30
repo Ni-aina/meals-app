@@ -15,12 +15,12 @@ type RenderCategoryItemType = {
 const CategoriesScreen = () => {
 
   const navigation = useNavigation<NavigationType>();
-  
+
   const renderCategoryItem = ({ item }: RenderCategoryItemType) => {
-    
+
     const pressHandler = () => {
       navigation.navigate("mealsOverview", {
-          categoryId: item.id
+        categoryId: item.id
       })
     }
 
