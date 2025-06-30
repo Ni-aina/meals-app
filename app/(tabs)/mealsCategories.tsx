@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <View style={{ backgroundColor: "#24180f" }}>
+    <View style={{ paddingTop: 16, paddingBottom: 16 }}>
       <CategoriesScreen />
     </View>
-  );
+  )
 }

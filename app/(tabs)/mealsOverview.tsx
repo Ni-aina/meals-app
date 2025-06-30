@@ -1,9 +1,26 @@
+import MealItem from "@/components/MealItem";
 import { MEALS } from "@/data/dummy-data";
+import { MealType } from "@/types/meal";
 import { RootStackParamList } from "@/types/navigation";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 type MealsOverviewScreenRouteProp = RouteProp<RootStackParamList, "mealsOverview">;
+
+type renderMealOverviewItemType = {
+    item: MealType
+}
+
+const renderMealOverviewItem = ({ item }: renderMealOverviewItemType) => {
+
+    const meal = { ...item }
+
+    return (
+        <MealItem
+            {...meal}
+        />
+    )
+}
 
 const MealsOverviewScreen = () => {
 
@@ -14,18 +31,11 @@ const MealsOverviewScreen = () => {
 
     return (
         <View style={styles.container}>
-            {displayedMeals.map(meal => (
-                <Text 
-                    key={meal.id} 
-                    style={{ padding: 10, 
-                    fontSize: 24, 
-                    color: "white", 
-                    marginVertical: 4 
-                    }}
-                >
-                    {meal.title}
-                </Text>
-            ))}
+            <FlatList
+                data={displayedMeals}
+                keyExtractor={meal => meal.id}
+                renderItem={renderMealOverviewItem}
+            />
         </View>
     )
 }
@@ -35,7 +45,6 @@ export default MealsOverviewScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#24180f",
         padding: 16
     }
 })
