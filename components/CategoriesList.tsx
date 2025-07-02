@@ -12,7 +12,7 @@ type RenderCategoryItemType = {
   item: CategoryType;
 }
 
-const CategoriesScreen = () => {
+const CategoriesList = () => {
 
   const navigation = useNavigation<NavigationType>();
 
@@ -43,4 +43,4 @@ const CategoriesScreen = () => {
   )
 }
 
-export default CategoriesScreen;
+export default CategoriesList;

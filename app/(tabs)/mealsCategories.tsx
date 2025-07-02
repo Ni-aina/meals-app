@@ -1,10 +1,12 @@
-import CategoriesScreen from '@/components/CategoriesScreen';
+import CategoriesList from '@/components/CategoriesList';
 import { View } from 'react-native';
 
-export default function HomeScreen() {
+const Mealscategories = ()=> {
   return (
-    <View style={{ paddingTop: 16, paddingBottom: 16 }}>
-      <CategoriesScreen />
+    <View style={{ paddingTop: 4, paddingBottom: 60 }}>
+      <CategoriesList />
     </View>
   )
 }
+
+export default Mealscategories

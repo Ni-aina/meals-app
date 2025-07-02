@@ -3,6 +3,7 @@ import { DetailsMealRootStack } from "@/types/navigation";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import MealDetails from "./MealDetails";
 
 type MealDetailsNavigation = NativeStackNavigationProp<DetailsMealRootStack>;
 
@@ -41,11 +42,12 @@ const MealItem = (props: MealType) => {
                     >
                         {title}
                     </Text>
-                    <View style={styles.details}>
-                        <Text>{duration}m</Text>
-                        <Text>{complexity}</Text>
-                        <Text>{affordability}</Text>
-                    </View>
+                    <MealDetails
+                        duration={duration}
+                        complexity={complexity}
+                        affordability={affordability}
+                        color="black"
+                    />
                 </View>
             </Pressable>
         </View>
@@ -87,11 +89,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: "center",
         marginBottom: 8
-    },
-    details: {
-        flexDirection: "row",
-        gap: 5,
-        alignItems: "center",
-        justifyContent: "center"
     }
 })
