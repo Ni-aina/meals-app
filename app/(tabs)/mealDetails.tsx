@@ -1,8 +1,15 @@
-import MealDetailscomponent from "@/components/MealDetails";
+import MealDetailsComponent from "@/components/MealDetails";
 import { MEALS } from "@/data/dummy-data";
 import { DetailsMealRootStack } from "@/types/navigation";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+    Dimensions,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View
+} from "react-native";
 
 type MealDetailsRouteProp = RouteProp<DetailsMealRootStack>;
 
@@ -27,21 +34,21 @@ const MealDetails = () => {
             />
             <ScrollView>
                 <View style={styles.itemGroup}>
-                    <Text style={[styles.title, styles.textWhite]}>{selectedMeal?.title}</Text>
-                    <MealDetailscomponent {...details} />
+                    <Text style={styles.title}>{selectedMeal?.title}</Text>
+                    <MealDetailsComponent {...details} />
                 </View>
                 <View style={styles.itemGroup}>
-                    <Text style={styles.textWhite}>Ingredients</Text>
+                    <Text style={styles.subTitle}>Ingredients</Text>
                     {
-                        selectedMeal?.ingredients.map(ingredient => 
+                        selectedMeal?.ingredients.map(ingredient =>
                             <Text key={ingredient} style={styles.textWhite}>{ingredient}</Text>
                         )
                     }
                 </View>
                 <View style={styles.itemGroup}>
-                    <Text style={styles.textWhite}>Steps</Text>
+                    <Text style={styles.subTitle}>Steps</Text>
                     {
-                        selectedMeal?.steps.map(step => 
+                        selectedMeal?.steps.map(step =>
                             <Text key={step} style={styles.textWhite}>{step}</Text>
                         )
                     }
@@ -50,18 +57,20 @@ const MealDetails = () => {
         </View>
     )
 }
- 
+
 export default MealDetails;
+
+const heightScreen = Dimensions.get("screen").height;
 
 const styles = StyleSheet.create({
     container: {
         padding: 16,
-        marginBottom: 250,
-        gap: 10
+        gap: 10,
+        maxHeight: heightScreen - 140
     },
     image: {
         width: "100%",
-        height: 200,
+        height: 350,
         borderRadius: 8
     },
     itemGroup: {
@@ -72,7 +81,15 @@ const styles = StyleSheet.create({
         color: "white"
     },
     title: {
+        fontSize: 24,
+        fontWeight: "bold",
+        color: "white"
+    },
+    subTitle: {
         fontSize: 18,
-        textTransform: "uppercase"
+        fontWeight: "bold",
+        color: "white",
+        marginTop: 10,
+        marginBottom: 10
     }
 })
