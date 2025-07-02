@@ -1,11 +1,11 @@
 import MealItem from "@/components/MealItem";
 import { MEALS } from "@/data/dummy-data";
 import { MealType } from "@/types/meal";
-import { RootStackParamList } from "@/types/navigation";
+import { MealsOverviewRootStack } from "@/types/navigation";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { FlatList, StyleSheet, View } from "react-native";
 
-type MealsOverviewScreenRouteProp = RouteProp<RootStackParamList, "mealsOverview">;
+type MealsOverviewScreenRouteProp = RouteProp<MealsOverviewRootStack>;
 
 type renderMealOverviewItemType = {
     item: MealType

@@ -1,9 +1,16 @@
 import { MealType } from "@/types/meal";
+import { DetailsMealRootStack } from "@/types/navigation";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+
+type MealDetailsNavigation = NativeStackNavigationProp<DetailsMealRootStack>;
 
 const MealItem = (props: MealType) => {
 
+    const navigation = useNavigation<MealDetailsNavigation>();
     const {
+        id,
         title,
         imageUrl,
         duration,
@@ -11,11 +18,18 @@ const MealItem = (props: MealType) => {
         affordability
     } = props;
 
+    const navigationHandler = ()=> {
+        navigation.navigate("mealDetails", {
+            mealId: id
+        })
+    }
+
     return (
         <View style={styles.item}>
             <Pressable
                 android_ripple={{ color: "#ccc" }}
                 style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
+                onPress={navigationHandler}
             >
                 <Image
                     source={{ uri: imageUrl }}
@@ -67,7 +81,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         padding: 16,
-        backgroundColor: "#ddd"
+        backgroundColor: "#fff"
     },
     title: {
         fontSize: 18,

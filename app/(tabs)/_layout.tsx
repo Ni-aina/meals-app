@@ -31,6 +31,12 @@ export default function TabLayout() {
         }
         }
       />
+      <Stack.Screen
+        name="mealDetails"
+        options={{
+          title: "Details meal"
+        }}
+      />
     </Stack>
   );
 }

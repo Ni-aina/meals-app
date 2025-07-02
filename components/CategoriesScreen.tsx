@@ -1,12 +1,12 @@
 import { CATEGORIES } from "@/data/dummy-data";
 import { CategoryType } from "@/types/category";
-import { RootStackParamList } from "@/types/navigation";
+import { MealsOverviewRootStack } from "@/types/navigation";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { FlatList } from "react-native";
 import CategoryGridTile from "./CategoryGridTile";
 
-type NavigationType = NativeStackNavigationProp<RootStackParamList, "Categories">;
+type NavigationType = NativeStackNavigationProp<MealsOverviewRootStack>;
 
 type RenderCategoryItemType = {
   item: CategoryType;
