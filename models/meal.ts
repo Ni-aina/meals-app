@@ -42,6 +42,11 @@ class Meal {
     this.isVegetarian = isVegetarian;
     this.isLactoseFree = isLactoseFree;
   }
+
+  // Pretend to be like
+  setIsVegan (like: boolean) {
+    this.isVegan = !like;
+  }
 }
 
 export default Meal;

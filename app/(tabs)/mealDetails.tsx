@@ -1,10 +1,14 @@
 import MealDetailsComponent from "@/components/MealDetails";
 import { MEALS } from "@/data/dummy-data";
 import { DetailsMealRootStack } from "@/types/navigation";
-import { RouteProp, useRoute } from "@react-navigation/native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useEffect, useLayoutEffect, useState } from "react";
 import {
     Dimensions,
     Image,
+    Pressable,
     ScrollView,
     StyleSheet,
     Text,
@@ -12,11 +16,18 @@ import {
 } from "react-native";
 
 type MealDetailsRouteProp = RouteProp<DetailsMealRootStack>;
+type MealDetailsNavigationProp = NativeStackNavigationProp<DetailsMealRootStack>;
 
 const MealDetails = () => {
     const route = useRoute<MealDetailsRouteProp>();
+    const navigation = useNavigation<MealDetailsNavigationProp>();
+    const [liked, setLiked] = useState(false);
     const mealId = route.params.mealId;
 
+    const likehandler = () => {
+        selectedMeal?.setIsVegan(liked);
+        setLiked(prev => !prev);
+    }
     const selectedMeal = MEALS.find(item => item.id === mealId);
     const details = {
         duration: selectedMeal?.duration,
@@ -24,6 +35,32 @@ const MealDetails = () => {
         affordability: selectedMeal?.affordability || "",
         color: "white"
     }
+
+    useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <Pressable
+                    onPress={likehandler}
+                    style={({ pressed }) => pressed && {
+                        opacity: 0.5
+                    }}
+                >
+                    <AntDesign
+                        name={liked ? "heart" : "hearto"}
+                        size={24}
+                        color="white"
+                    />
+                </Pressable>
+            )
+        })
+    }, [liked])
+
+    useLayoutEffect(() => {
+        setLiked(selectedMeal?.isVegan || false);
+        navigation.setOptions({
+            title: selectedMeal?.title
+        })
+    }, [])
 
     return (
         <View style={styles.container}>

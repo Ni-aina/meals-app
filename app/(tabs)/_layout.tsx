@@ -1,3 +1,4 @@
+import CustomGoBack from '@/components/customGoBack';
 import { CATEGORIES } from '@/data/dummy-data';
 import { Stack } from 'expo-router';
 import React from 'react';
@@ -26,7 +27,8 @@ export default function TabLayout() {
           const { categoryId } = route.params as { categoryId: string }
           const categoryTitle = CATEGORIES.find(category => category.id === categoryId)?.title;
           return {
-            title: categoryTitle || "Meals Overview"
+            title: categoryTitle || "Meals Overview",
+            headerLeft: ({ canGoBack }) => canGoBack && <CustomGoBack />
           }
         }
         }
@@ -34,7 +36,8 @@ export default function TabLayout() {
       <Stack.Screen
         name="mealDetails"
         options={{
-          title: "Details meal"
+          title: "Details meal",
+          headerLeft: ({ canGoBack }) => canGoBack && <CustomGoBack />,
         }}
       />
     </Stack>
