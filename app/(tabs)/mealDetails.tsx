@@ -1,3 +1,4 @@
+import LoadingImage from "@/components/LoadingImage";
 import MealDetailsComponent from "@/components/MealDetails";
 import { MEALS } from "@/data/dummy-data";
 import { DetailsMealRootStack } from "@/types/navigation";
@@ -21,12 +22,13 @@ type MealDetailsNavigationProp = NativeStackNavigationProp<DetailsMealRootStack>
 const MealDetails = () => {
     const route = useRoute<MealDetailsRouteProp>();
     const navigation = useNavigation<MealDetailsNavigationProp>();
-    const [liked, setLiked] = useState(false);
+    const [loadingImage, setLoadingImage] = useState<boolean>();
+    const [wish, setWish] = useState(false);
     const mealId = route.params.mealId;
 
     const likehandler = () => {
-        selectedMeal?.setIsVegan(liked);
-        setLiked(prev => !prev);
+        selectedMeal?.setIsVegan(wish);
+        setWish(prev => !prev);
     }
     const selectedMeal = MEALS.find(item => item.id === mealId);
     const details = {
@@ -46,17 +48,17 @@ const MealDetails = () => {
                     }}
                 >
                     <AntDesign
-                        name={liked ? "heart" : "hearto"}
+                        name={wish ? "star" : "staro"}
                         size={24}
                         color="white"
                     />
                 </Pressable>
             )
         })
-    }, [liked])
+    }, [wish])
 
     useLayoutEffect(() => {
-        setLiked(selectedMeal?.isVegan || false);
+        setWish(selectedMeal?.isVegan || false);
         navigation.setOptions({
             title: selectedMeal?.title
         })
@@ -64,10 +66,17 @@ const MealDetails = () => {
 
     return (
         <View style={styles.container}>
+            {
+                loadingImage && <LoadingImage height={100} />
+            }
             <Image
                 source={{ uri: selectedMeal?.imageUrl }}
                 alt={selectedMeal?.title}
-                style={styles.image}
+                style={[styles.image, {
+                    maxHeight: loadingImage ? 0 : "auto"
+                }]}
+                onLoadStart={() => setLoadingImage(true)}
+                onLoadEnd={() => setLoadingImage(false)}
             />
             <ScrollView>
                 <View style={styles.itemGroup}>

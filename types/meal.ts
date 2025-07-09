@@ -1,3 +1,3 @@
 import Meal from "@/models/meal";
 
-export type MealType = InstanceType<typeof Meal>
+export type MealType = Omit<Meal, keyof Meal & (keyof { setIsVegan: any })>

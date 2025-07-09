@@ -43,9 +43,9 @@ class Meal {
     this.isLactoseFree = isLactoseFree;
   }
 
-  // Pretend to be like
-  setIsVegan (like: boolean) {
-    this.isVegan = !like;
+  // Pretend to wish
+  setIsVegan (vegan: boolean) {
+    this.isVegan = !vegan;
   }
 }
 

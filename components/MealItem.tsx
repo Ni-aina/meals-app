@@ -2,7 +2,9 @@ import { MealType } from "@/types/meal";
 import { DetailsMealRootStack } from "@/types/navigation";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useState } from "react";
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import LoadingImage from "./LoadingImage";
 import MealDetails from "./MealDetails";
 
 type MealDetailsNavigation = NativeStackNavigationProp<DetailsMealRootStack>;
@@ -10,6 +12,7 @@ type MealDetailsNavigation = NativeStackNavigationProp<DetailsMealRootStack>;
 const MealItem = (props: MealType) => {
 
     const navigation = useNavigation<MealDetailsNavigation>();
+    const [loadingImage, setLoadingImage] = useState<boolean>();
     const {
         id,
         title,
@@ -19,7 +22,7 @@ const MealItem = (props: MealType) => {
         affordability
     } = props;
 
-    const navigationHandler = ()=> {
+    const navigationHandler = () => {
         navigation.navigate("mealDetails", {
             mealId: id
         })
@@ -32,9 +35,16 @@ const MealItem = (props: MealType) => {
                 style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
                 onPress={navigationHandler}
             >
+                {
+                    loadingImage && <LoadingImage height={70} />
+                }
                 <Image
                     source={{ uri: imageUrl }}
-                    style={styles.image}
+                    style={[styles.image, {
+                        maxHeight: loadingImage ? 0 : "auto"
+                    }]}
+                    onLoadStart={() => setLoadingImage(true)}
+                    onLoadEnd={() => setLoadingImage(false)}
                 />
                 <View style={styles.itemGroup}>
                     <Text
