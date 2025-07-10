@@ -3,7 +3,7 @@ import { CATEGORIES } from '@/data/dummy-data';
 import { Stack } from 'expo-router';
 import React from 'react';
 
-export default function TabLayout() {
+const TabLayout = ()=> {
 
   return (
     <Stack screenOptions={{
@@ -15,12 +15,7 @@ export default function TabLayout() {
       },
       headerTintColor: "white"
     }}>
-      <Stack.Screen
-        name="mealsCategories"
-        options={{
-          title: "Meals Categories"
-        }}
-      />
+      <Stack.Screen name="drawerNavigator" options={{ headerShown: false }}/>
       <Stack.Screen
         name="mealsOverview"
         options={({ route }) => {
@@ -36,10 +31,12 @@ export default function TabLayout() {
       <Stack.Screen
         name="mealDetails"
         options={{
-          title: "Details meal",
-          headerLeft: ({ canGoBack }) => canGoBack && <CustomGoBack />,
+          title: "Meal Details",
+          headerLeft: ({ canGoBack }) => canGoBack && <CustomGoBack />
         }}
       />
     </Stack>
-  );
+  )
 }
+
+export default TabLayout;

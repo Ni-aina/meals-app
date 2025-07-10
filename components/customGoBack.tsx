@@ -8,8 +8,8 @@ const CustomGoBack = () => {
         size={24}
         color="white"
         style={{
-            padding: 20,
-            paddingLeft: 0
+            paddingLeft: 0,
+            paddingRight: 20
         }}
         onPress={() => router.back()}
     />

@@ -27,7 +27,6 @@ const MealDetails = () => {
     const mealId = route.params.mealId;
 
     const likehandler = () => {
-        selectedMeal?.setIsVegan(wish);
         setWish(prev => !prev);
     }
     const selectedMeal = MEALS.find(item => item.id === mealId);
@@ -43,9 +42,11 @@ const MealDetails = () => {
             headerRight: () => (
                 <Pressable
                     onPress={likehandler}
-                    style={({ pressed }) => pressed && {
-                        opacity: 0.5
-                    }}
+                    style={({ pressed }) =>
+                        pressed && {
+                            opacity: 0.5
+                        }
+                    }
                 >
                     <AntDesign
                         name={wish ? "star" : "staro"}
@@ -58,7 +59,6 @@ const MealDetails = () => {
     }, [wish])
 
     useLayoutEffect(() => {
-        setWish(selectedMeal?.isVegan || false);
         navigation.setOptions({
             title: selectedMeal?.title
         })
@@ -67,7 +67,7 @@ const MealDetails = () => {
     return (
         <View style={styles.container}>
             {
-                loadingImage && <LoadingImage height={100} />
+                loadingImage && <LoadingImage height={60} />
             }
             <Image
                 source={{ uri: selectedMeal?.imageUrl }}

@@ -42,11 +42,6 @@ class Meal {
     this.isVegetarian = isVegetarian;
     this.isLactoseFree = isLactoseFree;
   }
-
-  // Pretend to wish
-  setIsVegan (vegan: boolean) {
-    this.isVegan = !vegan;
-  }
 }
 
 export default Meal;
