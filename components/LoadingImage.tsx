@@ -1,6 +1,6 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useLayoutEffect, useRef } from "react";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native";
 
 const LoadingImage = ({ height }: { height: number }) => {
     const spinValue = useRef(new Animated.Value(0)).current;
@@ -36,9 +36,11 @@ const LoadingImage = ({ height }: { height: number }) => {
 
 export default LoadingImage;
 
+const width = Dimensions.get("screen").width;
+
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        width,
         justifyContent: "center",
         alignItems: "center"
     },

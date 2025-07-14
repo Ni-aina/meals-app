@@ -1,11 +1,12 @@
 import LoadingImage from "@/components/LoadingImage";
 import MealDetailsComponent from "@/components/MealDetails";
 import { MEALS } from "@/data/dummy-data";
+import { FavoriteContext } from "@/store/context/favoriteContext";
 import { DetailsMealRootStack } from "@/types/navigation";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import {
     Dimensions,
     Image,
@@ -21,15 +22,20 @@ type MealDetailsNavigationProp = NativeStackNavigationProp<DetailsMealRootStack>
 
 const MealDetails = () => {
     const route = useRoute<MealDetailsRouteProp>();
+    const { ids, addFavoriteMeal, removeFavoriteMeal } = useContext(FavoriteContext);
     const navigation = useNavigation<MealDetailsNavigationProp>();
     const [loadingImage, setLoadingImage] = useState<boolean>();
-    const [wish, setWish] = useState(false);
     const mealId = route.params.mealId;
 
+    const liked = ids.includes(mealId);
+
     const likehandler = () => {
-        setWish(prev => !prev);
+        if (liked) return removeFavoriteMeal(mealId);
+        addFavoriteMeal(mealId);
     }
+
     const selectedMeal = MEALS.find(item => item.id === mealId);
+
     const details = {
         duration: selectedMeal?.duration,
         complexity: selectedMeal?.complexity || "",
@@ -49,14 +55,14 @@ const MealDetails = () => {
                     }
                 >
                     <AntDesign
-                        name={wish ? "star" : "staro"}
+                        name={liked ? "star" : "staro"}
                         size={24}
                         color="white"
                     />
                 </Pressable>
             )
         })
-    }, [wish])
+    }, [liked])
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -67,7 +73,7 @@ const MealDetails = () => {
     return (
         <View style={styles.container}>
             {
-                loadingImage && <LoadingImage height={60} />
+                loadingImage && <LoadingImage height={300} />
             }
             <Image
                 source={{ uri: selectedMeal?.imageUrl }}
