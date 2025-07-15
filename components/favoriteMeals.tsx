@@ -1,5 +1,5 @@
+import { FavoriteContext } from "@/context/favoriteContext";
 import { MEALS } from "@/data/dummy-data";
-import { FavoriteContext } from "@/store/context/favoriteContext";
 import { useContext } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import RenderMealItem from "./RenderMealItem";

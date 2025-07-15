@@ -1,6 +1,6 @@
 import CustomGoBack from '@/components/customGoBack';
+import FavoriteContextProvider from '@/context/favoriteContext';
 import { CATEGORIES } from '@/data/dummy-data';
-import FavoriteContextProvider from '@/store/context/favoriteContext';
 import { Stack } from 'expo-router';
 import React from 'react';
 

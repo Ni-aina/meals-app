@@ -1,7 +1,7 @@
 import LoadingImage from "@/components/LoadingImage";
 import MealDetailsComponent from "@/components/MealDetails";
+import { FavoriteContext } from "@/context/favoriteContext";
 import { MEALS } from "@/data/dummy-data";
-import { FavoriteContext } from "@/store/context/favoriteContext";
 import { DetailsMealRootStack } from "@/types/navigation";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
