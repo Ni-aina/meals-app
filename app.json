@@ -42,8 +42,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "5837f866-3a00-4233-9914-d5fc9d6d6f7e"
+        "projectId": "e04f370b-fcb4-44af-994a-fca909b30ae9"
       }
-    }
+    },
+    "owner": "ni-react-dev"
   }
 }
