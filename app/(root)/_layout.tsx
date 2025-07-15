@@ -4,7 +4,7 @@ import { CATEGORIES } from '@/data/dummy-data';
 import { Stack } from 'expo-router';
 import React from 'react';
 
-const TabLayout = ()=> {
+const RootLayout = ()=> {
 
   return (
     <FavoriteContextProvider>
@@ -42,4 +42,4 @@ const TabLayout = ()=> {
   )
 }
 
-export default TabLayout;
+export default RootLayout;
