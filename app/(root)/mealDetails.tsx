@@ -1,16 +1,15 @@
 import LoadingImage from "@/components/LoadingImage";
 import MealDetailsComponent from "@/components/MealDetails";
-import { FavoriteContext } from "@/context/favoriteContext";
+import Icon from "@/components/ui/Icon";
+import { FavoriteContext } from "@/context/FavoriteContext";
 import { MEALS } from "@/data/dummy-data";
 import { DetailsMealRootStack } from "@/types/navigation";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import {
     Dimensions,
     Image,
-    Pressable,
     ScrollView,
     StyleSheet,
     Text,
@@ -21,6 +20,7 @@ type MealDetailsRouteProp = RouteProp<DetailsMealRootStack>;
 type MealDetailsNavigationProp = NativeStackNavigationProp<DetailsMealRootStack>;
 
 const MealDetails = () => {
+
     const route = useRoute<MealDetailsRouteProp>();
     const { ids, addFavoriteMeal, removeFavoriteMeal } = useContext(FavoriteContext);
     const navigation = useNavigation<MealDetailsNavigationProp>();
@@ -46,20 +46,20 @@ const MealDetails = () => {
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <Pressable
-                    onPress={likehandler}
-                    style={({ pressed }) =>
-                        pressed && {
-                            opacity: 0.5
-                        }
-                    }
-                >
-                    <AntDesign
-                        name={liked ? "star" : "staro"}
-                        size={24}
-                        color="white"
+                liked ?
+                    <Icon
+                        name="star"
+                        size={25}
+                        iconStyle={{ marginRight: 10 }}
+                        onPress={likehandler}
                     />
-                </Pressable>
+                    :
+                    <Icon
+                        name="star-outline"
+                        size={25}
+                        iconStyle={{ marginRight: 10 }}
+                        onPress={likehandler}
+                    />
             )
         })
     }, [liked])
@@ -73,7 +73,7 @@ const MealDetails = () => {
     return (
         <View style={styles.container}>
             {
-                loadingImage && <LoadingImage height={300} />
+                loadingImage && <LoadingImage minHeight={340} />
             }
             <Image
                 source={{ uri: selectedMeal?.imageUrl }}
@@ -110,8 +110,6 @@ const MealDetails = () => {
     )
 }
 
-export default MealDetails;
-
 const heightScreen = Dimensions.get("screen").height;
 
 const styles = StyleSheet.create({
@@ -145,3 +143,5 @@ const styles = StyleSheet.create({
         marginBottom: 10
     }
 })
+
+export default MealDetails;

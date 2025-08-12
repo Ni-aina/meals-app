@@ -2,7 +2,11 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useLayoutEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 
-const LoadingImage = ({ height }: { height: number }) => {
+interface LoadingImageProps {
+    minHeight?: number;
+}
+
+const LoadingImage = ({ minHeight }: LoadingImageProps) => {
     const spinValue = useRef(new Animated.Value(0)).current;
 
     useLayoutEffect(() => {
@@ -22,7 +26,7 @@ const LoadingImage = ({ height }: { height: number }) => {
     });
 
     return (
-        <View style={[styles.container, { height }]}>
+        <View style={[styles.container, { minHeight }]}>
             <Animated.View style={{ transform: [{ rotate: spin }] }}>
                 <AntDesign
                     name="loading1"

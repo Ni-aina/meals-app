@@ -7,6 +7,7 @@ interface CategoryGridTileInterface {
 }
 
 const CategoryGridTile = ({ title, color, onPress }: CategoryGridTileInterface) => {
+    
     return (
         <View style={styles.gridItem}>
             <Pressable 
@@ -24,8 +25,6 @@ const CategoryGridTile = ({ title, color, onPress }: CategoryGridTileInterface) 
     )
 }
  
-export default CategoryGridTile;
-
 const styles = StyleSheet.create({
     gridItem: {
         flex: 1,
@@ -54,3 +53,5 @@ const styles = StyleSheet.create({
         borderRadius: 8
     }
 })
+
+export default CategoryGridTile;

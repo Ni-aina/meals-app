@@ -1,4 +1,4 @@
-import { FavoriteContext } from "@/context/favoriteContext";
+import { FavoriteContext } from "@/context/FavoriteContext";
 import { MEALS } from "@/data/dummy-data";
 import { useContext } from "react";
 import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
@@ -29,8 +29,6 @@ const FavoriteMeals = () => {
     )
 }
 
-export default FavoriteMeals;
-
 const { height } = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
@@ -49,3 +47,5 @@ const styles = StyleSheet.create({
         fontSize: 18
     }
 })
+
+export default FavoriteMeals;

@@ -36,7 +36,10 @@ const MealItem = (props: MealType) => {
                 onPress={navigationHandler}
             >
                 {
-                    loadingImage && <LoadingImage height={30} />
+                    loadingImage && 
+                    <View style={{ flex: 1, maxHeight: 200 }}>
+                        <LoadingImage />
+                    </View>
                 }
                 <Image
                     source={{ uri: imageUrl }}

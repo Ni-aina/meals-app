@@ -1,6 +1,6 @@
-import FavoriteMeals from '@/components/favoriteMeals';
-import Mealscategories from '@/components/mealsCategories';
-import { AntDesign } from '@expo/vector-icons';
+import FavoriteMeals from '@/components/FavoriteMeals';
+import Mealscategories from '@/components/MealsCategories';
+import Icon from '@/components/ui/Icon';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
@@ -25,21 +25,21 @@ const DrawerNavigator = () => {
                 drawerActiveBackgroundColor: "#e4baa1",
             }}
         >
-            <Drawer.Screen 
-                name="Categories" 
+            <Drawer.Screen
+                name="Categories"
                 component={Mealscategories}
                 options={{
                     title: "All Categories",
-                    drawerIcon: ({ color, size })=> <AntDesign name="home" color={color} size={size} />
+                    drawerIcon: ({ color, size }) => <Icon name="home" color={color} size={size} />
                 }}
             />
-            <Drawer.Screen 
-                name="FavoriteMeals" 
+            <Drawer.Screen
+                name="FavoriteMeals"
                 component={FavoriteMeals}
-                 options={{
+                options={{
                     title: "Favorite Meals",
-                    drawerIcon: ({ color, size })=> <AntDesign name="star" color={color} size={size} />
-                }}    
+                    drawerIcon: ({ color, size }) => <Icon name="star" color={color} size={size} />
+                }}
             />
         </Drawer.Navigator>
     )
