@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     pressed: {
-        opacity: 0.7
+        opacity: 0.5
     }
 })
 

@@ -13,7 +13,7 @@ const FavoriteMeals = () => {
     if (!ids.length) return (
         <View style={styles.noIdsContainer}>
             <Text style={styles.text}>
-                You haven't any favorite meals yet.
+                No favorite meals found!
             </Text>
         </View>
     )
@@ -35,16 +35,16 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 8,
-        paddingBottom: 40
+        paddingBottom: 50
     },
     noIdsContainer: {
-        height: height - 200,
+        height: height - 150,
         justifyContent: "center",
         alignItems: "center"
     },
     text: {
-        color: "#e4baa1",
-        fontSize: 18
+        color: "white",
+        fontSize: 24
     }
 })
 
